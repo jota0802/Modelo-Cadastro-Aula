@@ -1,11 +1,25 @@
-import React from 'react'
+import Grafico from  '../../components/Sensor/Grafico'
+import { useState,useEffect } from 'react'
 
-const Exemplo1 = () => {
+export default function Exemplo1() {
+
+  const [produtos, setProdutos]=useState([])
+
+
+  useEffect(()=>{
+    fetch("http://localhost:5000/produtos")
+    .then((res)=>{
+      return res.json()
+    }).then((res)=>
+      setProdutos(res)
+    )
+  })
+
+  
+
   return (
     <div>
-        <h1>Exemplo1</h1>
+       <Grafico data={produtos}/>
     </div>
   )
 }
-
-export default Exemplo1
